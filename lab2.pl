@@ -1,3 +1,10 @@
+/*
+ * Бозванов Иван
+ * ПИН - 33
+ * Лабораторная работа №2
+ * Вариант 4
+ */
+
 pair(X, Y, (X, Y)).
 double(X, R) :- R is X * 2.
 square(X, R) :- R is X * X.
@@ -80,16 +87,12 @@ for(_, _, _, _).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 6. sortBy(Comparator, List, Sorted)
-%%
-%% Используется сортировка слиянием (merge sort)
-%% Хорошо подходит для списков в Prolog
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Компаратор для чисел по возрастанию
+
 num_compare(X, Y, less)    :- X < Y.
 num_compare(X, Y, equal)   :- X =:= Y.
 num_compare(X, Y, greater) :- X > Y.
 
-% Компаратор по убыванию
 num_compare_desc(X, Y, less)    :- X > Y.
 num_compare_desc(X, Y, equal)   :- X =:= Y.
 num_compare_desc(X, Y, greater) :- X < Y.
@@ -97,7 +100,7 @@ num_compare_desc(X, Y, greater) :- X < Y.
 sortBy(_, [], []).
 sortBy(_, [X], [X]).
 sortBy(Comp, List, Sorted) :-
-    List = [_,_|_],                 % минимум 2 элемента
+    List = [_,_|_],
     split(List, L1, L2),
     sortBy(Comp, L1, S1),
     sortBy(Comp, L2, S2),
@@ -123,3 +126,12 @@ merge(Comp, [X|Xs], [Y|Ys], [X|Rest]) :-
     merge(Comp, Xs, [Y|Ys], Rest).
 merge(Comp, [X|Xs], [Y|Ys], [Y|Rest]) :-
     merge(Comp, [X|Xs], Ys, Rest).
+
+
+%%min_positive_number([-1, 5, -3, 2, 0], R).
+%%min_positive_number([-1, -5, 0], R).
+%%zipwith(pair, [1,2,3], [a,b,c], R).
+%%zipwith(double, [1,2,3], [1,2,3], R).
+%%iteratemap(double, 1, 5, R).
+%%diff(square, 0.001, 3, R).
+%%for(0, cond_less_5, step_plus_1, body_print).
