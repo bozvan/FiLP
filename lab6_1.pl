@@ -6,6 +6,8 @@
 % The file also contains the predicates used in the trees
 % so the queries can be reproduced in SWI-Prolog.
 
+:- use_module(library(plunit)).
+
 parent(alexey, boris).
 parent(alexey, viktor).
 parent(boris, galina).
@@ -60,3 +62,20 @@ my_append([Head | Tail], List, [Head | Result]) :-
 % Final bindings:
 % Head = a,
 % Tail = [b, c | List].
+
+:- begin_tests(lab6_task1).
+
+test(predok_potomok_answers,
+     true(Descendants == [boris, viktor, galina, dmitriy, elena])) :-
+    findall(X, predok_potomok(alexey, X), Descendants).
+
+test(predok_potomok_leaf_has_no_descendants, fail) :-
+    predok_potomok(elena, _).
+
+test(my_append_query_bindings) :-
+    my_append([a,b,c], List, [Head | Tail]),
+    assertion(Head == a),
+    assertion(var(List)),
+    assertion(Tail =@= [b, c | List]).
+
+:- end_tests(lab6_task1).
